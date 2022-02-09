@@ -4,8 +4,8 @@ const reviewAPI = axios.create({
   baseURL: "https://jayes-board-games.herokuapp.com/api",
 });
 
-export const getCategories = (category_slug) => {
-  return reviewAPI.get(`/categories/${category_slug}`).then(({ data }) => {
+export const getCategories = () => {
+  return reviewAPI.get("/categories/").then(({ data }) => {
     return data.categories;
   });
 };
