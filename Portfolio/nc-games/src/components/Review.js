@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getReview } from "../utils/api";
+import Comments from "./Comments";
 
 const Review = () => {
   const [review, setReview] = useState([]);
@@ -28,6 +29,7 @@ const Review = () => {
           <p>Votes: {review.votes}</p>
         </li>
       </ul>
+      <Comments review_id={review.review_id} />
     </main>
   );
 };

@@ -5,17 +5,21 @@ import { Link } from "react-router-dom";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  const [sort_by, setSort_by] = useState("created_at");
   const { review_id } = useParams();
 
   useEffect(() => {
-    getReviews(review_id).then((reviewsFromApi) => {
+    getReviews(review_id, sort_by).then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
     });
-  }, [review_id]);
+  }, [review_id, sort_by]);
 
   return (
     <main className="Reviews">
       <h2>All Reviews</h2>
+      <button onClick={() => setSort_by("created_at")}>Date</button>
+      <button onClick={() => setSort_by("votes")}>Votes</button>
+      <button onClick={() => setSort_by("owner")}>User</button>
       <ul>
         {reviews.map((review) => {
           return (
@@ -29,7 +33,7 @@ const Reviews = () => {
                   alt="Review"
                 />
                 <p>{review.category}</p>
-                <p>Votes: {review.votes}</p>{" "}
+                <p>Votes: {review.votes}</p>
               </li>
             </Link>
           );

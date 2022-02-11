@@ -21,3 +21,9 @@ export const getReview = (review_id) => {
     return data.review;
   });
 };
+
+export const getComments = (review_id) => {
+  return reviewAPI.get(`/reviews/${review_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+};
